@@ -2,10 +2,10 @@ package ec.edu.espol.proyecto_poo;
 
 import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.Vehiculo;
+import ec.edu.espol.model.Vendedor;
+
 import ec.edu.espol.util.Util;
 import java.security.NoSuchAlgorithmException;
-
-
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
@@ -56,6 +56,24 @@ public class Main {
                                     case 1: 
                                         System.out.println("Registrar un nuevo vendedor");
                                         System.out.println("-------------------------------");
+                                        //Creamos el objeto Vendedor
+                                        //Llamamos a leerteclado de Vendedor
+                                        Vendedor vendedor;
+                                        vendedor = Vendedor.leerTeclado(leer,"Vendedores.txt");
+                                        //Verificamos si el correo ingresado se encuentra en el sistema
+                                        boolean verificar = Util.verificarVendedor(vendedor, "Vendedores.txt");
+                                        while(verificar){
+                                            System.out.println("El correo con el que se desea registrar ya se encuentra en el sistema!!");
+                                            System.out.println("Ingrese sus datos nuevamente");
+                                            System.out.println("-------------------------------");
+                                            vendedor = Vendedor.leerTeclado(leer,"Vendedores.txt");
+                                            verificar = Util.verificarVendedor(vendedor, "Vendedores.txt");
+                                        }
+                                        System.out.println("-------------------------------");
+                                        System.out.println("El vendedor ha sido registrado exitosamente!!");
+                                        System.out.println("-------------------------------");
+                                        // Guardamos el vendedor en el sistema
+                                        vendedor.saveFile("Vendedores.txt");
                                         break;
                                     case 2: 
                                         System.out.println("Ingresar un nuevo vehículo");
