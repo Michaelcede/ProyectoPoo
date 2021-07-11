@@ -41,14 +41,15 @@ public class Util {
     
     //Para convertir contraseñas en tipo de dato Hash
     //Desde aqui
-    public static byte[] getSHA(String input) throws NoSuchAlgorithmException
+    private static byte[] getSHA(String contraseña) throws NoSuchAlgorithmException
     { 
         MessageDigest md = MessageDigest.getInstance("SHA-256"); 
-        return md.digest(input.getBytes(StandardCharsets.UTF_8)); 
+        return md.digest(contraseña.getBytes(StandardCharsets.UTF_8)); 
     }
     
-    public static String toHexString(byte[] hash){
-        BigInteger number = new BigInteger(1, hash); 
+    public static String convertirContraseña(String contraseña) throws NoSuchAlgorithmException{
+        
+        BigInteger number = new BigInteger(1, Util.getSHA(contraseña)); 
         StringBuilder hexString = new StringBuilder(number.toString(16)); 
         while (hexString.length() < 32) 
         { 
@@ -56,5 +57,6 @@ public class Util {
         } 
         return hexString.toString(); 
     }
+    //Hasta Aqui
     
 }
