@@ -82,6 +82,7 @@ public class Util {
     
     //Validar si la contraseña se encuentra en el sistema 
     // Te bota un true sino se encuentra y false si, si lo esta.
+    // Le das la contraseña ingresada y el archivo vendedores
     public static boolean validarContraseñaVendedor(String claveIngresada, String nomfile) throws NoSuchAlgorithmException{
         String hash = Util.convertirContraseña(claveIngresada);
         try(Scanner sc = new Scanner (new File(nomfile))){
