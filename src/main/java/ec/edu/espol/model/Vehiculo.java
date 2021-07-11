@@ -1,17 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.espol.model;
 
+import ec.edu.espol.util.Util;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
 import java.util.Scanner;
 /**
  *
- * @author micha
+ * @author 90% ALEC S.G - michael 10%
  */
 public class Vehiculo {
-   private String tipo; //(auto,camioneta,motocicleta)
+    private int id;
+
+    private String tipo; //(auto,camioneta,motocicleta)
     private String placa;
     private String marca;
     private String modelo;
@@ -26,7 +27,8 @@ public class Vehiculo {
     private double precio;
     
     //METODO CONSTRUCTOR PARA AUTOS
-    public Vehiculo(String placa, String tipo, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, double precio) {
+    public Vehiculo(int id, String placa, String tipo, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, double precio) {
+        this.id = id;
         this.placa = placa;
         this.tipo = tipo;
         this.marca = marca;
@@ -42,7 +44,8 @@ public class Vehiculo {
     }
     
     //METODO CONSTRUCTOR PARA CAMIONETAS
-    public Vehiculo(String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) {
+    public Vehiculo(int id, String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) {
+        this.id = id;
         this.placa = placa;
         this.tipo = tipo;
         this.marca = marca;
@@ -59,7 +62,8 @@ public class Vehiculo {
     }
     
     //METODO CONSTRUCTOR PARA MOTOS
-    public Vehiculo(String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio) {
+    public Vehiculo(int id, String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio) {
+        this.id = id;
         this.placa = placa;
         this.tipo = tipo;
         this.marca = marca;
@@ -70,6 +74,14 @@ public class Vehiculo {
         this.color = color;
         this.tipo_combustible = tipo_combustible;
         this.precio = precio;
+    }
+    
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
     
     public String getTipo() {
@@ -178,7 +190,7 @@ public class Vehiculo {
     }
     
     //(String nombre, String apellido, String email, String organizacion, String clave)
-    public static Vehiculo leerTeclado(Scanner sc){
+    public static Vehiculo leerTeclado(Scanner sc, String nomfile){
         System.out.println("Ingrese el tipo de Vehiculo (Auto, Camioneta, Moto): ");
         sc.useDelimiter("\n");
         String tipo = sc.next();
@@ -218,7 +230,8 @@ public class Vehiculo {
             System.out.println("Ingrese el precio del Auto: ");
             sc.useDelimiter("\n");
             double precio = sc.nextDouble();
-            Vehiculo vehiculo = new Vehiculo(placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, vidrios, transmision, precio);
+            int id = Util.nextID(nomfile);
+            Vehiculo vehiculo = new Vehiculo(id,placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, vidrios, transmision, precio);
             return vehiculo;
         }
         
@@ -260,7 +273,8 @@ public class Vehiculo {
             System.out.println("Ingrese el precio de la Camioneta: ");
             sc.useDelimiter("\n");
             double precio = sc.nextDouble();
-            Vehiculo vehiculo = new Vehiculo(placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, vidrios, transmision, traccion, precio);
+            int id = Util.nextID(nomfile);
+            Vehiculo vehiculo = new Vehiculo(id, placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, vidrios, transmision, traccion, precio);
             return vehiculo;
         }
         
@@ -293,7 +307,8 @@ public class Vehiculo {
             System.out.println("Ingrese el precio de la Moto: ");
             sc.useDelimiter("\n");
             double precio = sc.nextDouble();
-            Vehiculo vehiculo = new Vehiculo(placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, precio);
+            int id = Util.nextID(nomfile);
+            Vehiculo vehiculo = new Vehiculo(id, placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, precio);
             return vehiculo;
         }
         
@@ -323,13 +338,13 @@ public class Vehiculo {
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true)))
         {
             if(this.tipo.toLowerCase().equals("auto")){
-                pw.println(this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.precio);
+                pw.println(this.id+"|"+this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.precio);
             }
             if(this.tipo.toLowerCase().equals("camioneta")){
-                pw.println(this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.traccion + "|" + this.precio);  
+                pw.println(this.id+"|"+this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.traccion + "|" + this.precio);  
             }
             if(this.tipo.toLowerCase().equals("moto")){
-                pw.println(this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.precio);
+                pw.println(this.id+"|"+this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.precio);
             }
             
             }
