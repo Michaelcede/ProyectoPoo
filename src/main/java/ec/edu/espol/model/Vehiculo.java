@@ -317,4 +317,25 @@ public class Vehiculo {
        
        return null;
    }
+   
+   //Metodo para guardar Vehiculo en archivo de texto
+    public void saveFile(String nomfile){
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true)))
+        {
+            if(this.tipo.toLowerCase().equals("auto")){
+                pw.println(this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.precio);
+            }
+            if(this.tipo.toLowerCase().equals("camioneta")){
+                pw.println(this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.traccion + "|" + this.precio);  
+            }
+            if(this.tipo.toLowerCase().equals("moto")){
+                pw.println(this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.precio);
+            }
+            
+            }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+   
 }
