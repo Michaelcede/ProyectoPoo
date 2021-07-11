@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package ec.edu.espol.proyecto;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
@@ -25,12 +26,13 @@ public class Main {
         
         while(!salir){
             System.out.println("Menú de Opciones");
-            System.out.println("");
+            System.out.println("----------------");
             System.out.println("1. Vendedor");
             System.out.println("2. Comprador");
             System.out.println("3. Salir");
+            System.out.println("");
 
-            try(){
+            try{
                 System.out.print("Elije una opcion del menú: ");
                 n = leer.nextInt(); //n recoge el valor escrito por teclado (opcion del menu)
 
@@ -38,45 +40,78 @@ public class Main {
                     case 1:
                          System.out.println("Has escogido la opción Vendedor");
                          System.out.println("-------------------------------");
-                         int op1 = 0;
-                         do{
+                         boolean obsal1 = false;
+                         while(!obsal1){
                             System.out.println("1. Registrar un nuevo vendedor");
                             System.out.println("2. Ingresar un nuevo vehículo");
                             System.out.println("3. Aceptar oferta");
                             System.out.println("4. Regresar");
                             System.out.println("");
-                            System.out.println("Ingrese una opción: ");
-                            int o = leer.nextInt();
-                            switch(o)
-                            {
-                                case 1: 
-                                    System.out.println("Registrar un nuevo vendedor");
-                                    System.out.println("-------------------------------");
-                                    break;
-                                case 2: 
-                                    System.out.println("Ingresar un nuevo vehículo");
-                                    System.out.println("-------------------------------");
-                                    break;
-                                case 3: 
-                                    System.out.println("Aceptar oferta");
-                                    System.out.println("-------------------------------");
-                                    break;
-                                case 4: break;
-                                default:
-                                    System.out.println("No has escogido una opcion del menú");
+                            
+                            try{
+                                System.out.println("Ingrese una opción: ");
+                                int o = leer.nextInt();
+                                switch(o)
+                                {
+                                    case 1: 
+                                        System.out.println("Registrar un nuevo vendedor");
+                                        System.out.println("-------------------------------");
+                                        break;
+                                    case 2: 
+                                        System.out.println("Ingresar un nuevo vehículo");
+                                        System.out.println("-------------------------------");
+                                        break;
+                                    case 3: 
+                                        System.out.println("Aceptar oferta");
+                                        System.out.println("-------------------------------");
+                                        break;
+                                    case 4: 
+                                        obsal1 = true; 
+                                        break;
+                                    default:
+                                        System.out.println("No has escogido una opcion del menú");
+                                }
+                            }catch(InputMismatchException e){
+                                System.out.println("Debes ingresar un número");
+                                leer.next();
                             }
-                        } while(op1 != 4);
+                        }
                         break;
 
                     case 2:
                         System.out.println("Has escogido la opción Comprador");
                         System.out.println("--------------------------------");
-                        int op2 = 0;
-                        do{
-                        System.out.println("1. Registrar un nuevo comprador");
-                        System.out.println("2. Ofertar por un vehículo");
-                        System.out.println("3. Regresar");
-                        } while(op2 != 3);
+                        boolean obsal2 = false;
+                        while(!obsal2){
+                            System.out.println("1. Registrar un nuevo comprador");
+                            System.out.println("2. Ofertar por un vehículo");
+                            System.out.println("3. Regresar");
+                            System.out.println("");
+                            
+                            try{
+                                System.out.println("Ingrese una opción: ");
+                                int o = leer.nextInt();
+                                switch(o)
+                                    {
+                                        case 1: 
+                                            System.out.println("Registrar un nuevo comprador");
+                                            System.out.println("-------------------------------");
+                                            break;
+                                        case 2: 
+                                            System.out.println("Ofertar por un vehículo");
+                                            System.out.println("-------------------------------");
+                                            break;
+                                        case 3: 
+                                            obsal2 = true;
+                                            break;
+                                        default:
+                                            System.out.println("No has escogido una opcion del menú");
+                                    }
+                            }catch(InputMismatchException e){
+                                System.out.println("Debes ingresar un número");
+                                leer.next();
+                            }
+                        }
                         break; 
                     case 3:
                         salir = true;
@@ -91,7 +126,7 @@ public class Main {
             }
         }
         
-        System.out.println("Fin del meun");
+        System.out.println("Fin del menú");
         // TODO code application logic here
         
     }
