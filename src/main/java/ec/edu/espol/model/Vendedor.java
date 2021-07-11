@@ -9,21 +9,31 @@ import java.util.Scanner;
 
 /**
  *
- * @author micha
+ * @author 
  */
 public class Vendedor {
+    private int id;
     private String nombre;
     private String apellido;
     private String organizacion;
     private String email;
     private String clave;
 
-    public Vendedor(String nombre, String apellido, String organizacion, String email, String clave) {
+    public Vendedor(int id, String nombre, String apellido, String organizacion, String email, String clave) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.organizacion = organizacion;
         this.email = email;
         this.clave = clave;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -67,7 +77,7 @@ public class Vendedor {
     }
     
     //(String nombre, String apellido, String email, String organizacion, String clave)
-    public static Vendedor leerTeclado(Scanner sc) throws NoSuchAlgorithmException{
+    public static Vendedor leerTeclado(Scanner sc, String nomfile) throws NoSuchAlgorithmException{
         
         System.out.println("Ingrese nombre del Vendedor: ");
         sc.useDelimiter("\n");
@@ -87,7 +97,8 @@ public class Vendedor {
         //Convertimos la contraseña
         String hash = Util.convertirContraseña(contraseña);
         //Creamos el Objeto Comprador
-        Vendedor vendedor = new Vendedor(nombre, apellido, organizacion, email, hash);
+        int id = Util.nextID(nomfile);
+        Vendedor vendedor = new Vendedor(id, nombre, apellido, organizacion, email, hash);
         
         return vendedor;
     }
@@ -96,7 +107,7 @@ public class Vendedor {
     public void saveFile(String nomfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true)))
         {
-            pw.println(this.nombre+"|"+this.apellido+"|"+this.organizacion+"|"+this.email+"|"+this.clave);
+            pw.println(this.id+"|"+this.nombre+"|"+this.apellido+"|"+this.organizacion+"|"+this.email+"|"+this.clave);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
