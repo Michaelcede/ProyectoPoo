@@ -22,7 +22,7 @@ public class Util {
     
     // Verifica si el vendedor esta en el sistema. Le das un onjeto Vendedor y un archivo de texto con los vendedores
     // Te bota un true sino se encuentra y false si, si lo esta.
-    public boolean verificarVendedor(Vendedor v,String nomfile){
+    public static boolean verificarVendedor(Vendedor v,String nomfile){
         try(Scanner sc = new Scanner (new File(nomfile))){
             while (sc.hasNextLine()){
                 String linea = sc.nextLine();
