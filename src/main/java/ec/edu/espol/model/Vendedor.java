@@ -96,7 +96,7 @@ public class Vendedor {
         String contraseña = sc.next();
         //Convertimos la contraseña
         String hash = Util.convertirContraseña(contraseña);
-        //Creamos el Objeto Comprador
+        //Creamos el Objeto Vendedor
         int id = Util.nextID(nomfile);
         Vendedor vendedor = new Vendedor(id, nombre, apellido, organizacion, email, hash);
         
