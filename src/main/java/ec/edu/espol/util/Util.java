@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.espol.util;
 
 import ec.edu.espol.model.Comprador;
@@ -14,6 +9,7 @@ import java.math.BigInteger;
 import java.nio.charset.StandardCharsets;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 
 
 /**
@@ -22,6 +18,20 @@ import java.security.NoSuchAlgorithmException;
  */
 public class Util {
     
+    private Util(){};
+    
+    public static int nextID(String nomfile){
+        int id = 0;
+        try(Scanner sc = new Scanner(new File(nomfile))){
+            while(sc.hasNextLine()){
+                String linea = sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                id = Integer.parseInt(tokens[0]);
+            }
+        }catch(Exception e){
+        }
+        return id+1;
+    }
     // Verifica si el vendedor esta en el sistema. Le das un onjeto Vendedor y un archivo de texto con los vendedores
     // Te bota un true sino se encuentra y false si, si lo esta.
     public static boolean verificarVendedor(Vendedor v,String nomfile){
