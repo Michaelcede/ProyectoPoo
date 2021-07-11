@@ -47,6 +47,7 @@ public class Util {
         return md.digest(contraseña.getBytes(StandardCharsets.UTF_8)); 
     }
     
+    //Esta es la que se llama
     public static String convertirContraseña(String contraseña) throws NoSuchAlgorithmException{
         
         BigInteger number = new BigInteger(1, Util.getSHA(contraseña)); 
