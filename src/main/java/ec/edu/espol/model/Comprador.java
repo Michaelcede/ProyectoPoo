@@ -10,36 +10,34 @@ package ec.edu.espol.model;
  * @author micha
  */
 public class Comprador {
-    private String nombres;
-    private String apellidos;
+    private String nombre;
+    private String apellido;
     private String correo_electronico;
     private String organizacion;
-    private String correo;
     private String clase;
 
-    public Comprador(String nombres, String apellidos, String correo_electronico, String organizacion, String correo, String clase) {
-        this.nombres = nombres;
-        this.apellidos = apellidos;
+    public Comprador(String nombre, String apellido, String correo_electronico, String organizacion, String clase) {
+        this.nombre = nombre;
+        this.apellido = apellido;
         this.correo_electronico = correo_electronico;
         this.organizacion = organizacion;
-        this.correo = correo;
         this.clase = clase;
     }
 
-    public String getNombres() {
-        return nombres;
+    public String getNombre() {
+        return nombre;
     }
 
-    public void setNombres(String nombres) {
+    public void setNombre(String nombre) {
         this.nombres = nombres;
     }
 
-    public String getApellidos() {
-        return apellidos;
+    public String getApellido() {
+        return apellido;
     }
 
-    public void setApellidos(String apellidos) {
-        this.apellidos = apellidos;
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
     }
 
     public String getCorreo_electronico() {
@@ -56,14 +54,6 @@ public class Comprador {
 
     public void setOrganizacion(String organizacion) {
         this.organizacion = organizacion;
-    }
-
-    public String getCorreo() {
-        return correo;
-    }
-
-    public void setCorreo(String correo) {
-        this.correo = correo;
     }
 
     public String getClase() {
