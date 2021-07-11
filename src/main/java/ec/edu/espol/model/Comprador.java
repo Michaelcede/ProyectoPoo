@@ -5,6 +5,13 @@
  */
 package ec.edu.espol.model;
 
+import ec.edu.espol.util.Util;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
+import java.util.Scanner;
+
 /**
  *
  * @author micha
@@ -62,6 +69,48 @@ public class Comprador {
 
     public void setClase(String clase) {
         this.clase = clase;
+    }
+    
+    //(String nombre, String apellido, String email, String organizacion, String clave)
+    public static Comprador leerTeclado(Scanner sc) throws NoSuchAlgorithmException{
+        
+        System.out.println("Ingrese nombre del Comprador: ");
+        sc.useDelimiter("\n");
+        String nombre = sc.next();
+        System.out.println("Ingrese apellido del Comprador: ");
+        sc.useDelimiter("\n");
+        String apellido = sc.next();
+        System.out.println("Ingrese correo del Comprador: ");
+        sc.useDelimiter("\n");    
+        String email = sc.next();
+        System.out.println("Ingrese organizacion del Comprador: ");
+        sc.useDelimiter("\n");
+        String organizacion = sc.next();
+        System.out.println("Ingrese contraseña del Comprador: ");
+        sc.useDelimiter("\n");
+        String contraseña = sc.next();
+        //Convertimos la contraseña
+        String hash = Util.convertirContraseña(contraseña);
+        //Creamos el Objeto Comprador
+        Comprador comprador = new Comprador(nombre, apellido, email, organizacion, hash);
+        
+        return comprador;
+    }
+    
+    //Metodo para guardar Comprador en archivo de texto
+    public void saveFile(String nomfile){
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true)))
+        {
+            pw.println(this.nombre+"|"+this.apellido+"|"+this.email+"|"+this.organizacion+"|"+this.clave);
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    @Override
+    public String toString(){
+        return nombre + "," + apellido + "," + email + "," + organizacion + "," + clave;
     }
     
 }
