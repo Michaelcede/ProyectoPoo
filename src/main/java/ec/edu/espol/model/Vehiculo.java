@@ -5,12 +5,13 @@
  */
 package ec.edu.espol.model;
 
+import java.util.Scanner;
 /**
  *
  * @author micha
  */
 public class Vehiculo {
-    private String tipo; //(auto,camioneta,motocicleta)
+   private String tipo; //(auto,camioneta,motocicleta)
     private String placa;
     private String marca;
     private String modelo;
@@ -24,10 +25,26 @@ public class Vehiculo {
     private String traccion; //aplica para camionetas
     private double precio;
     
-    //METODO CONSTRUCTOR PARA AUTOS Y CAMIONETAS
-    if(this.tipo.toLowerCase() == "auto" || this.tipo.toLowerCase() == "camioneta")
-    public Vehiculo(String placa, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) {
+    //METODO CONSTRUCTOR PARA AUTOS
+    public Vehiculo(String placa, String tipo, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, double precio) {
         this.placa = placa;
+        this.tipo = tipo;
+        this.marca = marca;
+        this.modelo = modelo;
+        this.tipo_de_motor = tipo_de_motor;
+        this.año = año;
+        this.recorrido = recorrido;
+        this.color = color;
+        this.tipo_combustible = tipo_combustible;
+        this.vidrios = vidrios;
+        this.transmision = transmision;
+        this.precio = precio;
+    }
+    
+    //METODO CONSTRUCTOR PARA CAMIONETAS
+    public Vehiculo(String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) {
+        this.placa = placa;
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo_de_motor = tipo_de_motor;
@@ -41,9 +58,10 @@ public class Vehiculo {
         this.precio = precio;
     }
     
-    //METODO CONSTRUCTOR PARA MOTOCICLETAS
-    public Vehiculo(String placa, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio) {
+    //METODO CONSTRUCTOR PARA MOTOS
+    public Vehiculo(String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio) {
         this.placa = placa;
+        this.tipo = tipo;
         this.marca = marca;
         this.modelo = modelo;
         this.tipo_de_motor = tipo_de_motor;
@@ -105,6 +123,7 @@ public class Vehiculo {
     public double getRecorrido() {
         return recorrido;
     }
+    
 
     public void setRecorrido(double recorrido) {
         this.recorrido = recorrido;
@@ -157,4 +176,145 @@ public class Vehiculo {
     public void setPrecio(double precio) {
         this.precio = precio;
     }
+    
+    //(String nombre, String apellido, String email, String organizacion, String clave)
+    public static Vehiculo leerTeclado(Scanner sc){
+        System.out.println("Ingrese el tipo de Vehiculo (Auto, Camioneta, Moto): ");
+        sc.useDelimiter("\n");
+        String tipo = sc.next();
+        
+        // Para Auto: (String placa, String tipo, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, double precio) 
+        if(tipo.toLowerCase().equals("auto")){
+            System.out.println("Ingrese la placa del Auto: ");
+            sc.useDelimiter("\n");
+            String placa = sc.next();
+            System.out.println("Ingrese la marca del Auto: ");
+            sc.useDelimiter("\n");
+            String marca = sc.next();
+            System.out.println("Ingrese el modelo del Auto: ");
+            sc.useDelimiter("\n");
+            String modelo = sc.next();
+            System.out.println("Ingrese el tipo de motor del Auto: ");
+            sc.useDelimiter("\n");
+            String tipo_de_motor = sc.next();
+            System.out.println("Ingrese el año del Auto: ");
+            sc.useDelimiter("\n");
+            int año = sc.nextInt();
+            System.out.println("Ingrese el recorrido del Auto: ");
+            sc.useDelimiter("\n");
+            double recorrido = sc.nextDouble();
+            System.out.println("Ingrese el color del Auto: ");
+            sc.useDelimiter("\n");
+            String color = sc.next();
+            System.out.println("Ingrese el tipo de combustible del Auto: ");
+            sc.useDelimiter("\n");
+            String tipo_combustible = sc.next();
+            System.out.println("Ingrese los vidrios del Auto: ");
+            sc.useDelimiter("\n");
+            String vidrios = sc.next();
+            System.out.println("Ingrese la transmision del Auto: ");
+            sc.useDelimiter("\n");
+            String transmision = sc.next();
+            System.out.println("Ingrese el precio del Auto: ");
+            sc.useDelimiter("\n");
+            double precio = sc.nextDouble();
+            Vehiculo vehiculo = new Vehiculo(placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, vidrios, transmision, precio);
+            return vehiculo;
+        }
+        
+        // Para Camioneta: (String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) 
+        if(tipo.toLowerCase().equals("camioneta")){
+            System.out.println("Ingrese la placa de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String placa = sc.next();
+            System.out.println("Ingrese la marca de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String marca = sc.next();
+            System.out.println("Ingrese el modelo de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String modelo = sc.next();
+            System.out.println("Ingrese el tipo de motor de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String tipo_de_motor = sc.next();
+            System.out.println("Ingrese el año de la Camioneta: ");
+            sc.useDelimiter("\n");
+            int año = sc.nextInt();
+            System.out.println("Ingrese el recorrido de la Camioneta: ");
+            sc.useDelimiter("\n");
+            double recorrido = sc.nextDouble();
+            System.out.println("Ingrese el color de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String color = sc.next();
+            System.out.println("Ingrese el tipo de combustible de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String tipo_combustible = sc.next();
+            System.out.println("Ingrese los vidrios de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String vidrios = sc.next();
+            System.out.println("Ingrese la transmision de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String transmision = sc.next();
+            System.out.println("Ingrese la traccion de la Camioneta: ");
+            sc.useDelimiter("\n");
+            String traccion = sc.next();
+            System.out.println("Ingrese el precio de la Camioneta: ");
+            sc.useDelimiter("\n");
+            double precio = sc.nextDouble();
+            Vehiculo vehiculo = new Vehiculo(placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, vidrios, transmision, traccion, precio);
+            return vehiculo;
+        }
+        
+        // Para Moto: (String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio)
+        if(tipo.toLowerCase().equals("moto")){
+            System.out.println("Ingrese la placa de la Moto: ");
+            sc.useDelimiter("\n");
+            String placa = sc.next();
+            System.out.println("Ingrese la marca de la Moto: ");
+            sc.useDelimiter("\n");
+            String marca = sc.next();
+            System.out.println("Ingrese el modelo de la Moto: ");
+            sc.useDelimiter("\n");
+            String modelo = sc.next();
+            System.out.println("Ingrese el tipo de motor de la Moto: ");
+            sc.useDelimiter("\n");
+            String tipo_de_motor = sc.next();
+            System.out.println("Ingrese el año de la Moto: ");
+            sc.useDelimiter("\n");
+            int año = sc.nextInt();
+            System.out.println("Ingrese el recorrido de la Moto: ");
+            sc.useDelimiter("\n");
+            double recorrido = sc.nextDouble();
+            System.out.println("Ingrese el color de la Moto: ");
+            sc.useDelimiter("\n");
+            String color = sc.next();
+            System.out.println("Ingrese el tipo de combustible de la Moto: ");
+            sc.useDelimiter("\n");
+            String tipo_combustible = sc.next();
+            System.out.println("Ingrese el precio de la Moto: ");
+            sc.useDelimiter("\n");
+            double precio = sc.nextDouble();
+            Vehiculo vehiculo = new Vehiculo(placa, tipo, marca, modelo, tipo_de_motor, año, recorrido, color, tipo_combustible, precio);
+            return vehiculo;
+        }
+        
+        else
+            return null;
+    }
+    
+   @Override
+   public String toString(){
+       // Para Auto: (String placa, String tipo, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, double precio) 
+       if (this.tipo.toLowerCase().equals("auto"))
+           return placa + "|" + tipo + "|" + marca + "|" + modelo + "|" + tipo_de_motor + "|" + año + "|" + recorrido + "|" + color + "|" + tipo_combustible + "|" + vidrios + "|" + transmision + "|" + precio;
+       
+       // Para Camioneta: (String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) 
+       if (this.tipo.toLowerCase().equals("camioneta"))
+           return placa + "|" + tipo + "|" + marca + "|" + modelo + "|" + tipo_de_motor + "|" + año + "|" + recorrido + "|" + color + "|" + tipo_combustible + "|" + vidrios + "|" + transmision + "|" + traccion + "|" + precio;
+       
+       // Para Moto: (String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio)
+       if (this.tipo.toLowerCase().equals("moto"))
+           return placa + "|" + tipo + "|" + marca + "|" + modelo + "|" + tipo_de_motor + "|" + año + "|" + recorrido + "|" + color + "|" + tipo_combustible + "|" + precio;
+       
+       return null;
+   }
 }
