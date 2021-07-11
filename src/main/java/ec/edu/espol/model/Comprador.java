@@ -12,18 +12,28 @@ import java.util.Scanner;
  * @author Alec
  */
 public class Comprador {
+    private int id;
     private String nombre;
     private String apellido;
     private String email;
     private String organizacion;
     private String clave;
 
-    public Comprador(String nombre, String apellido, String email, String organizacion, String clave) {
+    public Comprador(int id, String nombre, String apellido, String email, String organizacion, String clave) {
+        this.id = id;
         this.nombre = nombre;
         this.apellido = apellido;
         this.email = email;
         this.organizacion = organizacion;
         this.clave = clave;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getNombre() {
@@ -67,7 +77,7 @@ public class Comprador {
     }
     
     //(String nombre, String apellido, String email, String organizacion, String clave)
-    public static Comprador leerTeclado(Scanner sc) throws NoSuchAlgorithmException{
+    public static Comprador leerTeclado(Scanner sc, String nomfile) throws NoSuchAlgorithmException{
         
         System.out.println("Ingrese nombre del Comprador: ");
         sc.useDelimiter("\n");
@@ -87,7 +97,8 @@ public class Comprador {
         //Convertimos la contraseña
         String hash = Util.convertirContraseña(contraseña);
         //Creamos el Objeto Comprador
-        Comprador comprador = new Comprador(nombre, apellido, email, organizacion, hash);
+        int id = Util.nextID(nomfile);
+        Comprador comprador = new Comprador(id, nombre, apellido, email, organizacion, hash);
         
         return comprador;
     }
@@ -96,7 +107,7 @@ public class Comprador {
     public void saveFile(String nomfile){
         try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true)))
         {
-            pw.println(this.nombre+"|"+this.apellido+"|"+this.email+"|"+this.organizacion+"|"+this.clave);
+            pw.println(this.id+"|"+this.nombre+"|"+this.apellido+"|"+this.email+"|"+this.organizacion+"|"+this.clave);
         }
         catch(Exception e){
             System.out.println(e.getMessage());
@@ -105,7 +116,7 @@ public class Comprador {
     
     @Override
     public String toString(){
-        return nombre + "," + apellido + "," + email + "," + organizacion + "," + clave;
+        return id + "," + nombre + "," + apellido + "," + email + "," + organizacion + "," + clave;
     }
     
 }
