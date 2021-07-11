@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package ec.edu.espol.model;
 
 import ec.edu.espol.util.Util;
@@ -14,21 +9,21 @@ import java.util.Scanner;
 
 /**
  *
- * @author micha
+ * @author Alec
  */
 public class Comprador {
     private String nombre;
     private String apellido;
-    private String correo_electronico;
+    private String email;
     private String organizacion;
-    private String clase;
+    private String clave;
 
-    public Comprador(String nombre, String apellido, String correo_electronico, String organizacion, String clase) {
+    public Comprador(String nombre, String apellido, String email, String organizacion, String clave) {
         this.nombre = nombre;
         this.apellido = apellido;
-        this.correo_electronico = correo_electronico;
+        this.email = email;
         this.organizacion = organizacion;
-        this.clase = clase;
+        this.clave = clave;
     }
 
     public String getNombre() {
@@ -36,7 +31,7 @@ public class Comprador {
     }
 
     public void setNombre(String nombre) {
-        this.nombres = nombres;
+        this.nombre = nombre;
     }
 
     public String getApellido() {
@@ -47,12 +42,12 @@ public class Comprador {
         this.apellido = apellido;
     }
 
-    public String getCorreo_electronico() {
-        return correo_electronico;
+    public String getEmail() {
+        return email;
     }
 
-    public void setCorreo_electronico(String correo_electronico) {
-        this.correo_electronico = correo_electronico;
+    public void setEmail(String emial) {
+        this.email = emial;
     }
 
     public String getOrganizacion() {
@@ -63,12 +58,12 @@ public class Comprador {
         this.organizacion = organizacion;
     }
 
-    public String getClase() {
-        return clase;
+    public String getClave() {
+        return clave;
     }
 
-    public void setClase(String clase) {
-        this.clase = clase;
+    public void setClave(String clave) {
+        this.clave = clave;
     }
     
     //(String nombre, String apellido, String email, String organizacion, String clave)
