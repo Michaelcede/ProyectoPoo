@@ -36,27 +36,47 @@ public class Main {
 
                 switch(n){
                     case 1:
-                        System.out.println("Has escogido la opción Vendedor");
-                        System.out.println("");
-                        int op1 = 0;
-                        do{
-                        System.out.println("1. Registrar un nuevo vendedor");
-                        System.out.println("2. Ingresar un nuevo vehículo");
-                        System.out.println("3. Aceptar oferta");
-                        System.out.println("4. Regresar");
+                         System.out.println("Has escogido la opción Vendedor");
+                         System.out.println("-------------------------------");
+                         int op1 = 0;
+                         do{
+                            System.out.println("1. Registrar un nuevo vendedor");
+                            System.out.println("2. Ingresar un nuevo vehículo");
+                            System.out.println("3. Aceptar oferta");
+                            System.out.println("4. Regresar");
+                            System.out.println("");
+                            System.out.println("Ingrese una opción: ");
+                            int o = leer.nextInt();
+                            switch(o)
+                            {
+                                case 1: 
+                                    System.out.println("Registrar un nuevo vendedor");
+                                    System.out.println("-------------------------------");
+                                    break;
+                                case 2: 
+                                    System.out.println("Ingresar un nuevo vehículo");
+                                    System.out.println("-------------------------------");
+                                    break;
+                                case 3: 
+                                    System.out.println("Aceptar oferta");
+                                    System.out.println("-------------------------------");
+                                    break;
+                                case 4: break;
+                                default:
+                                    System.out.println("No has escogido una opcion del menú");
+                            }
                         } while(op1 != 4);
                         break;
 
                     case 2:
                         System.out.println("Has escogido la opción Comprador");
-                        System.out.println("");
+                        System.out.println("--------------------------------");
                         int op2 = 0;
                         do{
-                        System.out.println("1. Registrar un nuevo vendedor");
-                        System.out.println("2. Ingresar un nuevo vehículo");
-                        System.out.println("3. Aceptar oferta");
-                        System.out.println("4. Regresar");
-                        } while(op2 != 4);
+                        System.out.println("1. Registrar un nuevo comprador");
+                        System.out.println("2. Ofertar por un vehículo");
+                        System.out.println("3. Regresar");
+                        } while(op2 != 3);
                         break; 
                     case 3:
                         salir = true;
