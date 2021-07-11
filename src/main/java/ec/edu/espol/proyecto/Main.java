@@ -99,6 +99,24 @@ public class Main {
                                         case 1: 
                                             System.out.println("Registrar un nuevo comprador");
                                             System.out.println("-------------------------------");
+                                            //Creamos el objeto Comprador
+                                            //Llamamos a leerteclado de Comprador
+                                            Comprador comprador;
+                                            comprador = Comprador.leerTeclado(leer,"Compradores.txt");
+                                            //Verificamos si el correo ingresado se encuentra en el sistema
+                                            boolean verificar = Util.verificarComprador(comprador, "Compradores.txt");
+                                            while(verificar){
+                                                System.out.println("El correo con el que se desea registrar ya se encuentra en el sistema!!");
+                                                System.out.println("Ingrese sus datos nuevamente");
+                                                System.out.println("-------------------------------");
+                                                comprador = Comprador.leerTeclado(leer,"Compradores.txt");
+                                                verificar = Util.verificarComprador(comprador, "Compradores.txt");
+                                            }
+                                            System.out.println("-------------------------------");
+                                            System.out.println("El comprador ha sido registrado exitosamente!!");
+                                            System.out.println("-------------------------------");
+                                            // Guardamos el comprador en el sistema
+                                            comprador.saveFile("Compradores.txt");
                                             break;
                                         case 2: 
                                             System.out.println("Ofertar por un vehículo");
