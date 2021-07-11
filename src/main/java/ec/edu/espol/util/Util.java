@@ -40,22 +40,26 @@ public class Util {
         return true;
     }
     
-    // Verifica si el comprador esta en el sistema. Le das un archivo de texto con los compradores
-    // Te bota un true sino se encuentra y false si, si lo esta.
-    public static boolean verificarComprador(Comprador c,String nomfile){
+    // Verifica si el comprador esta en el sistema. Le das el email a verificar y un archivo de texto con los compradores.
+    // Te bota un true si se encuentra en el archivo y false si no lo esta.
+    public static boolean verificarComprador(String email,String nomfile){
+        ArrayList<String> correoCompradores = new ArrayList<String>();
         try(Scanner sc = new Scanner (new File(nomfile))){
             while (sc.hasNextLine()){
                 String linea = sc.nextLine();
                 String[] tokens = linea.split("\\|");
-                if(c.getEmail().equals(tokens[3])){
-                    return false;
-                }
+                correoCompradores.add(tokens[2]);
             }
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-        return true;
+        for(String c: correoCompradores)   {
+            if(c == email)  {
+                return true;
+            }
+        }
+        return false;
     }
     
     //Para convertir contraseñas en tipo de dato Hash
