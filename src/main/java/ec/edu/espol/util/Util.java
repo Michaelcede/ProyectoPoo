@@ -5,7 +5,9 @@
  */
 package ec.edu.espol.util;
 
+import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.Vendedor;
+
 import java.io.File;
 import java.util.Scanner;
 import java.math.BigInteger;
@@ -38,6 +40,23 @@ public class Util {
         return true;
     }
     
+    // Verifica si el comprador esta en el sistema. Le das un archivo de texto con los compradores
+    // Te bota un true sino se encuentra y false si, si lo esta.
+    public static boolean verificarComprador(Comprador c,String nomfile){
+        try(Scanner sc = new Scanner (new File(nomfile))){
+            while (sc.hasNextLine()){
+                String linea = sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                if(c.getEmail().equals(tokens[3])){
+                    return false;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return true;
+    }
     
     //Para convertir contraseñas en tipo de dato Hash
     //Desde aqui
