@@ -99,4 +99,23 @@ public class Util {
         return true;
     }
     
+    //Validar si el vehiculo se encuentra en el sistema 
+    // Te bota un true sino se encuentra y false si, si lo esta.
+    // Le das la placa del vehiculo a ingresar y el archivo vendedores
+    public static boolean validarVehiculo(String placaIngresada, String nomfile){
+        try(Scanner sc = new Scanner (new File(nomfile))){
+            while (sc.hasNextLine()){
+                String linea = sc.nextLine();
+                String[] tokens = linea.split("\\|");
+                if(placaIngresada.equals(tokens[0])){
+                    return false;
+                }
+            }
+        }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+        return true;
+    }
+    
 }
