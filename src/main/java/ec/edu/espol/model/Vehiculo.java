@@ -11,7 +11,6 @@ import java.util.Scanner;
  */
 public class Vehiculo {
     private int id;
-
     private String tipo; //(auto,camioneta,motocicleta)
     private String placa;
     private String marca;
