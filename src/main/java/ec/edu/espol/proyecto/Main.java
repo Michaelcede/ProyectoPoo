@@ -1,15 +1,17 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
-package ec.edu.espol.proyecto;
+package ec.edu.espol.proyecto_poo;
+
+import ec.edu.espol.model.Comprador;
+import ec.edu.espol.model.Vehiculo;
+import ec.edu.espol.util.Util;
+import java.security.NoSuchAlgorithmException;
+
+
 import java.util.InputMismatchException;
 import java.util.Scanner;
 
 /**
  *
- * @author micha
+ * @author alecs
  */
 public class Main {
 
@@ -17,10 +19,8 @@ public class Main {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
-        //Menu de opciones principal
-       
         Scanner leer = new Scanner(System.in);
-        
+
         int n;
         boolean salir = false;
         
@@ -60,6 +60,9 @@ public class Main {
                                     case 2: 
                                         System.out.println("Ingresar un nuevo vehículo");
                                         System.out.println("-------------------------------");
+                                        Vehiculo vehiculo = Vehiculo.leerTeclado(leer,"Vehiculos.txt");
+                                        System.out.println(vehiculo);
+                                        vehiculo.saveFile("Vehiculos.txt");
                                         break;
                                     case 3: 
                                         System.out.println("Aceptar oferta");
@@ -126,9 +129,9 @@ public class Main {
             }
         }
         
-        System.out.println("Fin del menú");
-        
+        System.out.println("Fin del meun");
+        // TODO code application logic here
         
     }
-    
+        // TODO code application logic here
 }
