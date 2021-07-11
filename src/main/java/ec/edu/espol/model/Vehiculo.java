@@ -10,6 +10,7 @@ package ec.edu.espol.model;
  * @author micha
  */
 public class Vehiculo {
+    private String tipo; //(auto,camioneta,motocicleta)
     private String placa;
     private String marca;
     private String modelo;
@@ -24,7 +25,7 @@ public class Vehiculo {
     private double precio;
     
     //METODO CONSTRUCTOR PARA AUTOS Y CAMIONETAS
-    if(tipo.toLowerCase() == "auto" || tipo.toLowerCase() == "camioneta")
+    if(this.tipo.toLowerCase() == "auto" || this.tipo.toLowerCase() == "camioneta")
     public Vehiculo(String placa, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) {
         this.placa = placa;
         this.marca = marca;
@@ -51,6 +52,14 @@ public class Vehiculo {
         this.color = color;
         this.tipo_combustible = tipo_combustible;
         this.precio = precio;
+    }
+    
+    public String getTipo() {
+        return tipo;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
     }
 
     public String getPlaca() {
