@@ -24,6 +24,7 @@ public class Vehiculo {
     private double precio;
     
     //METODO CONSTRUCTOR PARA AUTOS Y CAMIONETAS
+    if(tipo.toLowerCase() == "auto" || tipo.toLowerCase() == "camioneta")
     public Vehiculo(String placa, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) {
         this.placa = placa;
         this.marca = marca;
