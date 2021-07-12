@@ -76,10 +76,31 @@ public class Main {
                                         vendedor.saveFile("Vendedores.txt");
                                         break;
                                     case 2: 
+                                        //Valido que el vendedor ingrese con su correo y contraseña correcto
+                                        System.out.println("Solo pueden ingresar Vendedores");
+                                        boolean sentencia = Util.pedirVendedor(leer);
+                                        while(sentencia){
+                                            System.out.println("Acceso No Permitido!");
+                                            System.out.println("Ingrese sus datos nuevamente");
+                                            System.out.println("-------------------------------");
+                                            sentencia = Util.pedirVendedor(leer);
+                                        }
                                         System.out.println("Ingresar un nuevo vehículo");
                                         System.out.println("-------------------------------");
-                                        Vehiculo vehiculo = Vehiculo.leerTeclado(leer,"Vehiculos.txt");
-                                        System.out.println(vehiculo);
+                                        Vehiculo vehiculo;
+                                        vehiculo = Vehiculo.leerTeclado(leer,"Vehiculos.txt");
+                                        boolean comprobar = Util.verificarVehiculo(vehiculo, "Vehiculos.txt");
+                                        while(comprobar){
+                                            System.out.println("El vehiculo ingresado ya existe!!");
+                                            System.out.println("Ingrese sus datos nuevamente");
+                                            System.out.println("-------------------------------");
+                                            vehiculo = Vehiculo.leerTeclado(leer,"Vehiculos.txt");
+                                            comprobar = Util.verificarVehiculo(vehiculo, "Vehiculos.txt");
+                                        }
+                                        System.out.println("-------------------------------");
+                                        System.out.println("El vehiculo ha sido registrado exitosamente!!");
+                                        System.out.println("-------------------------------");
+                                        //Guardamos el vehiculo en el sistema
                                         vehiculo.saveFile("Vehiculos.txt");
                                         break;
                                     case 3: 
