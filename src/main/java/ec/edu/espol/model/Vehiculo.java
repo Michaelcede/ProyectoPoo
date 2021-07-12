@@ -351,5 +351,62 @@ public class Vehiculo {
             System.out.println(e.getMessage());
         }
     }
+    
+    //Metodo para guardar Vehiculo en archivo de texto
+    public void saveFile(String nomfile){
+        try(PrintWriter pw = new PrintWriter(new FileOutputStream(new File(nomfile),true)))
+        {
+            if(this.tipo.toLowerCase().equals("auto")){
+                pw.println(this.id+"|"+this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.precio);
+            }
+            if(this.tipo.toLowerCase().equals("camioneta")){
+                pw.println(this.id+"|"+this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.vidrios + "|" + this.transmision + "|" + this.traccion + "|" + this.precio);  
+            }
+            if(this.tipo.toLowerCase().equals("moto")){
+                pw.println(this.id+"|"+this.placa + "|" + this.tipo + "|" + this.marca + "|" + this.modelo + "|" + this.tipo_de_motor + "|" + this.año + "|" + this.recorrido + "|" + this.color + "|" + this.tipo_combustible + "|" + this.precio);
+            }
+            
+            }
+        catch(Exception e){
+            System.out.println(e.getMessage());
+        }
+    }
+    
+    //Metodo para leer el archivo
+    
+    public static ArrayList<Vehiculo> readFile(String nomfile) throws FileNotFoundException{
+        ArrayList<Vehiculo> vehiculos = new ArrayList<>();
+        try(Scanner sc = new Scanner(new File(nomfile))){
+            while(sc.hasNextLine()){
+            String linea = sc.nextLine();
+            String[] tokens = linea.split("\\|");
+            // Para Auto: (String placa, String tipo, String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, double precio) 
+            if(tokens[2].toLowerCase().equals("auto")){
+                Vehiculo v = new Vehiculo(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5],Integer.parseInt(tokens[6]),Double.parseDouble(tokens[7]),tokens[8],tokens[9],tokens[10],tokens[11],Double.parseDouble(tokens[12]));
+                vehiculos.add(v);
+            }
+            // Para Camioneta: (String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, String vidrios, String transmision, String traccion, double precio) 
+            if(tokens[2].toLowerCase().equals("camioneta")){
+                Vehiculo v = new Vehiculo(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5],Integer.parseInt(tokens[6]),Double.parseDouble(tokens[7]),tokens[8],tokens[9],tokens[10],tokens[11],tokens[12],Double.parseDouble(tokens[13]));
+                vehiculos.add(v);
+            }
+            // Para Moto: (String placa, String tipo , String marca, String modelo, String tipo_de_motor, int año, double recorrido, String color, String tipo_combustible, double precio)
+            if(tokens[2].toLowerCase().equals("moto")){
+                Vehiculo v = new Vehiculo(Integer.parseInt(tokens[0]),tokens[1],tokens[2],tokens[3],tokens[4],tokens[5],Integer.parseInt(tokens[6]),Double.parseDouble(tokens[7]),tokens[8],tokens[9],Double.parseDouble(tokens[10]));
+                vehiculos.add(v);
+            }
+            }
+        }
+        return vehiculos;
+    }
+    /*
+    public static Vehiculo searchByParametros(ArrayList<Vehiculo> vehiculos,ArrayList<Oferta> ofertas){
+        for(Vehiculo v : vehiculos){
+            for(Oferta o: ofertas){
+                if(v.tipo.equals(o.getTipo()))
+            }
+        }
+    }
+    */
    
 }
