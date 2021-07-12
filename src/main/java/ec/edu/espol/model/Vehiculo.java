@@ -4,6 +4,7 @@ import ec.edu.espol.util.Util;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.PrintWriter;
+import java.security.NoSuchAlgorithmException;
 import java.util.Scanner;
 /**
  *
