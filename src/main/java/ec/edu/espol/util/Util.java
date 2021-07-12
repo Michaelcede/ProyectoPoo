@@ -2,6 +2,7 @@ package ec.edu.espol.util;
 
 import ec.edu.espol.model.Comprador;
 import ec.edu.espol.model.Vendedor;
+import ec.edu.espol.model.Vehiculo;
 
 import java.io.File;
 import java.util.Scanner;
@@ -93,19 +94,17 @@ public class Util {
     }
     //Hasta Aqui
     
-    
-    //Validar si la contraseña se encuentra en el sistema 
-    // Te bota un true sino se encuentra y false si, si lo esta.
+    // Te bota un true si se encuentra en el archivo y false si no lo esta.
     // Le das la contraseña ingresada y el archivo vendedores
-    public static boolean validarContraseñaVendedor(String claveIngresada, String nomfile) throws NoSuchAlgorithmException{
+    // (id, nombre, apellido, organizacion, email, hash)
+    private static boolean validarContraseñaVendedor(String correoIngresado, String claveIngresada, String nomfile) throws NoSuchAlgorithmException{
         String hash = Util.convertirContraseña(claveIngresada);
         try(Scanner sc = new Scanner (new File(nomfile))){
             while (sc.hasNextLine()){
                 String linea = sc.nextLine();
                 String[] tokens = linea.split("\\|");
-                if(hash.equals(tokens[4])){
+                if (correoIngresado.equals(tokens[4]) && hash.equals(tokens[5]))
                     return false;
-                }
             }
         }
         catch(Exception e){
@@ -114,23 +113,39 @@ public class Util {
         return true;
     }
     
-    //Validar si el vehiculo se encuentra en el sistema 
-    // Te bota un true sino se encuentra y false si, si lo esta.
-    // Le das la placa del vehiculo a ingresar y el archivo vendedores
-    public static boolean validarVehiculo(String placaIngresada, String nomfile){
+    //Se llama para validar el ingreso de un Vendedor (Vota True si la contraseña esta incorrecta y False si no lo esta)
+    public static boolean pedirVendedor(Scanner sc) throws NoSuchAlgorithmException{
+        System.out.println("Ingrese su correo: ");
+        sc.useDelimiter("\n");
+        String correo = sc.next();
+        System.out.println("Ingrese su contraseña: ");
+        sc.useDelimiter("\n");
+        String contraseña = sc.next();
+
+        boolean resultado = Util.validarContraseñaVendedor(correo, contraseña, "Vendedores.txt");
+        return resultado;
+    }
+    
+    // Validar si el vehiculo se encuentra en el sistema 
+    // Te bota un true si se encuentra en el archivo y false si no lo esta.
+    public static boolean verificarVehiculo(Vehiculo vehiculo, String nomfile){
+        ArrayList<String> placas = new ArrayList<String>();
         try(Scanner sc = new Scanner (new File(nomfile))){
             while (sc.hasNextLine()){
                 String linea = sc.nextLine();
                 String[] tokens = linea.split("\\|");
-                if(placaIngresada.equals(tokens[0])){
-                    return false;
-                }
+                placas.add(tokens[1]);
             }
         }
         catch(Exception e){
             System.out.println(e.getMessage());
         }
-        return true;
+        for(String p: placas)   {
+            if(vehiculo.getPlaca().equals(p)){
+                return true;
+            }
+        }
+        return false;
     }
     
 }
